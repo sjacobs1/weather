@@ -2,13 +2,455 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <link rel="stylesheet" href="src/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title></title>
+    <title>weather</title>
   </head>
 
-  <body>
-    <script type="module" src="/src/main.ts"></script>
+  <body
+    class="flex justify-center h-screen bg-bodyBackground font-sans text-center text-textColor"
+  >
+    <div class="p-4 w-screen h-screen flex flex-col justify-around">
+      <div
+        class="bg-today rounded-lg flex flex-col lg:flex-row gap-20 py-5 px-5 lg:h-72"
+      >
+        <div class="lg:pt-10 lg:pl-10">
+          <h1 class="pb-5 text-center">Today's conditions</h1>
+          <h1 class="text-4xl pb-2">Johannesburg</h1>
+          <div class="flex justify-center gap-5 items-center">
+            <div>
+              <svg
+                stroke="currentColor"
+                fill="currentColor"
+                stroke-width="0"
+                viewBox="0 0 512 512"
+                height="3rem"
+                width="3rem"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-miterlimit="10"
+                  stroke-width="32"
+                  d="M256 48v48m0 320v48m147.08-355.08-33.94 33.94M142.86 369.14l-33.94 33.94M464 256h-48m-320 0H48m355.08 147.08-33.94-33.94M142.86 142.86l-33.94-33.94"
+                ></path>
+                <circle
+                  cx="256"
+                  cy="256"
+                  r="80"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-miterlimit="10"
+                  stroke-width="32"
+                ></circle>
+              </svg>
+            </div>
+            <div class="flex flex-col">
+              <div class="text-3xl ml-4 flex">10°C</div>
+              <div>mostly sunny</div>
+            </div>
+          </div>
+        </div>
+        <div class="lg:flex lg:justify-center lg:items-center lg:w-full">
+          <div
+            class="grid grid-cols-3 gap-10 md:grid-cols-3 text-sm mb-4 lg:flex lg:justify-center lg:flex-wrap lg:gap-32"
+          >
+            <div class="flex flex-col items-center gap-3">
+              <svg
+                stroke="#E6B400"
+                fill="#980200"
+                stroke-width="0"
+                viewBox="0 0 256 512"
+                height="2rem"
+                width="2rem"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M224 96c0-53.019-42.981-96-96-96S32 42.981 32 96v203.347C12.225 321.756.166 351.136.002 383.333c-.359 70.303 56.787 128.176 127.089 128.664.299.002.61.003.909.003 70.698 0 128-57.304 128-128 0-32.459-12.088-62.09-32-84.653V96zm-96 368l-.576-.002c-43.86-.304-79.647-36.544-79.423-80.42.173-33.98 19.266-51.652 31.999-66.08V96c0-26.467 21.533-48 48-48s48 21.533 48 48v221.498c12.63 14.312 32 32.164 32 66.502 0 44.112-35.888 80-80 80zm64-80c0 35.346-28.654 64-64 64s-64-28.654-64-64c0-23.685 12.876-44.349 32-55.417V96c0-17.673 14.327-32 32-32s32 14.327 32 32v232.583c19.124 11.068 32 31.732 32 55.417z"
+                ></path>
+              </svg>
+              <div class="text-2xl">22°C</div>
+              <div>high</div>
+            </div>
+            <div class="flex flex-col items-center gap-3">
+              <svg
+                stroke="silver"
+                fill="silver"
+                stroke-width="0"
+                viewBox="0 0 512 512"
+                height="2rem"
+                width="2rem"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M156.7 256H16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h142.2c15.9 0 30.8 10.9 33.4 26.6 3.3 20-12.1 37.4-31.6 37.4-14.1 0-26.1-9.2-30.4-21.9-2.1-6.3-8.6-10.1-15.2-10.1H81.6c-9.8 0-17.7 8.8-15.9 18.4 8.6 44.1 47.6 77.6 94.2 77.6 57.1 0 102.7-50.1 95.2-108.6C249 291 205.4 256 156.7 256zM16 224h336c59.7 0 106.8-54.8 93.8-116.7-7.6-36.2-36.9-65.5-73.1-73.1-55.4-11.6-105.1 24.9-114.9 75.5-1.9 9.6 6.1 18.3 15.8 18.3h32.8c6.7 0 13.1-3.8 15.2-10.1C325.9 105.2 337.9 96 352 96c19.4 0 34.9 17.4 31.6 37.4-2.6 15.7-17.4 26.6-33.4 26.6H16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16zm384 32H243.7c19.3 16.6 33.2 38.8 39.8 64H400c26.5 0 48 21.5 48 48s-21.5 48-48 48c-17.9 0-33.3-9.9-41.6-24.4-2.9-5-8.7-7.6-14.5-7.6h-33.8c-10.9 0-19 10.8-15.3 21.1 17.8 50.6 70.5 84.8 129.4 72.3 41.2-8.7 75.1-41.6 84.7-82.7C526 321.5 470.5 256 400 256z"
+                ></path>
+              </svg>
+              <div class="text-2xl">7kmph</div>
+              <div>wind</div>
+            </div>
+            <div class="flex flex-col items-center gap-3">
+              <svg
+                stroke="#E6B400"
+                fill="#E6B400"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                height="2rem"
+                width="2rem"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M17 18a5 5 0 0 0-10 0"></path>
+                <line x1="12" y1="2" x2="12" y2="9"></line>
+                <line x1="4.22" y1="10.22" x2="5.64" y2="11.64"></line>
+                <line x1="1" y1="18" x2="3" y2="18"></line>
+                <line x1="21" y1="18" x2="23" y2="18"></line>
+                <line x1="18.36" y1="11.64" x2="19.78" y2="10.22"></line>
+                <line x1="23" y1="22" x2="1" y2="22"></line>
+                <polyline points="8 6 12 2 16 6"></polyline>
+              </svg>
+              <div class="text-2xl">06:55</div>
+              <div>sunrise</div>
+            </div>
+            <div class="flex flex-col items-center gap-3">
+              <svg
+                stroke="#1F38E5"
+                fill="#1F38E5"
+                stroke-width="0"
+                viewBox="0 0 256 512"
+                height="2rem"
+                width="2rem"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M192 384c0 35.346-28.654 64-64 64s-64-28.654-64-64c0-23.685 12.876-44.349 32-55.417V224c0-17.673 14.327-32 32-32s32 14.327 32 32v104.583c19.124 11.068 32 31.732 32 55.417zm32-84.653c19.912 22.563 32 52.194 32 84.653 0 70.696-57.303 128-128 128-.299 0-.609-.001-.909-.003C56.789 511.509-.357 453.636.002 383.333.166 351.135 12.225 321.755 32 299.347V96c0-53.019 42.981-96 96-96s96 42.981 96 96v203.347zM208 384c0-34.339-19.37-52.19-32-66.502V96c0-26.467-21.533-48-48-48S80 69.533 80 96v221.498c-12.732 14.428-31.825 32.1-31.999 66.08-.224 43.876 35.563 80.116 79.423 80.42L128 464c44.112 0 80-35.888 80-80z"
+                ></path>
+              </svg>
+              <div class="text-2xl">9°C</div>
+              <div>low</div>
+            </div>
+            <div class="flex flex-col items-center gap-3">
+              <svg
+                stroke="#5AC3E5"
+                fill="#5AC3E5"
+                stroke-width="0"
+                viewBox="0 0 512 512"
+                height="2rem"
+                width="2rem"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M406.043 316c24.11 96.443-50.59 180-150 180s-174.405-82.38-150-180c15-60 90-150 150-300 60 150 135 240 150 300z"
+                ></path>
+              </svg>
+              <div class="text-2xl">0%</div>
+              <div>rain</div>
+            </div>
+            <div class="flex flex-col items-center gap-3">
+              <svg
+                stroke="#E68C22"
+                fill="#E68C22"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                height="2rem"
+                width="2rem"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M17 18a5 5 0 0 0-10 0"></path>
+                <line x1="12" y1="9" x2="12" y2="2"></line>
+                <line x1="4.22" y1="10.22" x2="5.64" y2="11.64"></line>
+                <line x1="1" y1="18" x2="3" y2="18"></line>
+                <line x1="21" y1="18" x2="23" y2="18"></line>
+                <line x1="18.36" y1="11.64" x2="19.78" y2="10.22"></line>
+                <line x1="23" y1="22" x2="1" y2="22"></line>
+                <polyline points="16 5 12 9 8 5"></polyline>
+              </svg>
+              <div class="text-2xl">17:32</div>
+              <div>sunset</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h1 class="py-5">Forecast for the next 6 days</h1>
+
+      <div
+        class="grid grid-cols-1 gap-2 pb-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 text-sm"
+      >
+        <div
+          class="bg-weekDays rounded-lg p-2 h-20 sm:h-24 md:h-28 lg:h-32 xl:h-72 flex justify-around items-center lg:flex-col"
+        >
+          <div>7/11</div>
+          <div>
+            <div class="text-3xl">21</div>
+            <div>high</div>
+          </div>
+          <div>
+            <div class="text-3xl">9</div>
+            <div>low</div>
+          </div>
+          <div class="flex flex-col items-center">
+            <div>
+              <svg
+                stroke="currentColor"
+                fill="currentColor"
+                stroke-width="0"
+                viewBox="0 0 512 512"
+                height="2rem"
+                width="2rem"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-miterlimit="10"
+                  stroke-width="32"
+                  d="M256 48v48m0 320v48m147.08-355.08-33.94 33.94M142.86 369.14l-33.94 33.94M464 256h-48m-320 0H48m355.08 147.08-33.94-33.94M142.86 142.86l-33.94-33.94"
+                ></path>
+                <circle
+                  cx="256"
+                  cy="256"
+                  r="80"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-miterlimit="10"
+                  stroke-width="32"
+                ></circle>
+              </svg>
+            </div>
+            <div>sunny</div>
+          </div>
+        </div>
+
+        <div
+          class="bg-weekDays rounded-lg p-2 h-20 sm:h-24 md:h-28 lg:h-32 xl:h-72 flex justify-around items-center lg:flex-col"
+        >
+          <div>7/11</div>
+          <div>
+            <div class="text-3xl">21</div>
+            <div>high</div>
+          </div>
+          <div>
+            <div class="text-3xl">9</div>
+            <div>low</div>
+          </div>
+          <div class="flex flex-col items-center">
+            <div>
+              <svg
+                stroke="currentColor"
+                fill="currentColor"
+                stroke-width="0"
+                viewBox="0 0 512 512"
+                height="2rem"
+                width="2rem"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-miterlimit="10"
+                  stroke-width="32"
+                  d="M256 48v48m0 320v48m147.08-355.08-33.94 33.94M142.86 369.14l-33.94 33.94M464 256h-48m-320 0H48m355.08 147.08-33.94-33.94M142.86 142.86l-33.94-33.94"
+                ></path>
+                <circle
+                  cx="256"
+                  cy="256"
+                  r="80"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-miterlimit="10"
+                  stroke-width="32"
+                ></circle>
+              </svg>
+            </div>
+            <div>sunny</div>
+          </div>
+        </div>
+
+        <div
+          class="bg-weekDays rounded-lg p-2 h-20 sm:h-24 md:h-28 lg:h-32 xl:h-72 flex justify-around items-center lg:flex-col"
+        >
+          <div>7/11</div>
+          <div>
+            <div class="text-3xl">21</div>
+            <div>high</div>
+          </div>
+          <div>
+            <div class="text-3xl">9</div>
+            <div>low</div>
+          </div>
+          <div class="flex flex-col items-center">
+            <div>
+              <svg
+                stroke="currentColor"
+                fill="currentColor"
+                stroke-width="0"
+                viewBox="0 0 512 512"
+                height="2rem"
+                width="2rem"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-miterlimit="10"
+                  stroke-width="32"
+                  d="M256 48v48m0 320v48m147.08-355.08-33.94 33.94M142.86 369.14l-33.94 33.94M464 256h-48m-320 0H48m355.08 147.08-33.94-33.94M142.86 142.86l-33.94-33.94"
+                ></path>
+                <circle
+                  cx="256"
+                  cy="256"
+                  r="80"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-miterlimit="10"
+                  stroke-width="32"
+                ></circle>
+              </svg>
+            </div>
+            <div>sunny</div>
+          </div>
+        </div>
+
+        <div
+          class="bg-weekDays rounded-lg p-2 h-20 sm:h-24 md:h-28 lg:h-32 xl:h-72 flex justify-around items-center lg:flex-col"
+        >
+          <div>7/11</div>
+          <div>
+            <div class="text-3xl">21</div>
+            <div>high</div>
+          </div>
+          <div>
+            <div class="text-3xl">9</div>
+            <div>low</div>
+          </div>
+          <div class="flex flex-col items-center">
+            <div>
+              <svg
+                stroke="currentColor"
+                fill="currentColor"
+                stroke-width="0"
+                viewBox="0 0 512 512"
+                height="2rem"
+                width="2rem"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-miterlimit="10"
+                  stroke-width="32"
+                  d="M256 48v48m0 320v48m147.08-355.08-33.94 33.94M142.86 369.14l-33.94 33.94M464 256h-48m-320 0H48m355.08 147.08-33.94-33.94M142.86 142.86l-33.94-33.94"
+                ></path>
+                <circle
+                  cx="256"
+                  cy="256"
+                  r="80"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-miterlimit="10"
+                  stroke-width="32"
+                ></circle>
+              </svg>
+            </div>
+            <div>sunny</div>
+          </div>
+        </div>
+
+        <div
+          class="bg-weekDays rounded-lg p-2 h-20 sm:h-24 md:h-28 lg:h-32 xl:h-72 flex justify-around items-center lg:flex-col"
+        >
+          <div>7/11</div>
+          <div>
+            <div class="text-3xl">21</div>
+            <div>high</div>
+          </div>
+          <div>
+            <div class="text-3xl">9</div>
+            <div>low</div>
+          </div>
+          <div class="flex flex-col items-center">
+            <div>
+              <svg
+                stroke="currentColor"
+                fill="currentColor"
+                stroke-width="0"
+                viewBox="0 0 512 512"
+                height="2rem"
+                width="2rem"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-miterlimit="10"
+                  stroke-width="32"
+                  d="M256 48v48m0 320v48m147.08-355.08-33.94 33.94M142.86 369.14l-33.94 33.94M464 256h-48m-320 0H48m355.08 147.08-33.94-33.94M142.86 142.86l-33.94-33.94"
+                ></path>
+                <circle
+                  cx="256"
+                  cy="256"
+                  r="80"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-miterlimit="10"
+                  stroke-width="32"
+                ></circle>
+              </svg>
+            </div>
+            <div>sunny</div>
+          </div>
+        </div>
+
+        <div
+          class="bg-weekDays rounded-lg p-2 h-20 sm:h-24 md:h-28 lg:h-32 xl:h-72 flex justify-around items-center lg:flex-col"
+        >
+          <div>7/11</div>
+          <div>
+            <div class="text-3xl">21</div>
+            <div>high</div>
+          </div>
+          <div>
+            <div class="text-3xl">9</div>
+            <div>low</div>
+          </div>
+          <div class="flex flex-col items-center">
+            <div>
+              <svg
+                stroke="currentColor"
+                fill="currentColor"
+                stroke-width="0"
+                viewBox="0 0 512 512"
+                height="2rem"
+                width="2rem"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-miterlimit="10"
+                  stroke-width="32"
+                  d="M256 48v48m0 320v48m147.08-355.08-33.94 33.94M142.86 369.14l-33.94 33.94M464 256h-48m-320 0H48m355.08 147.08-33.94-33.94M142.86 142.86l-33.94-33.94"
+                ></path>
+                <circle
+                  cx="256"
+                  cy="256"
+                  r="80"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-miterlimit="10"
+                  stroke-width="32"
+                ></circle>
+              </svg>
+            </div>
+            <div>sunny</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
