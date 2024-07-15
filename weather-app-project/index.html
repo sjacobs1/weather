@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="src/style.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>weather</title>
   </head>
@@ -10,7 +12,8 @@
   <body
     class="flex justify-center h-screen bg-bodyBackground font-sans text-center text-textColor"
   >
-    <div class="p-4 w-screen h-screen flex flex-col justify-around">
+    <div class="p-4 w-screen h-screenflex flex-col justify-around">
+      <div id="map" class="w-full h-[50vh] mb-4 rounded-lg">test</div>
       <div
         class="bg-today rounded-lg flex flex-col lg:flex-row gap-20 py-5 px-5 lg:h-72"
       >
@@ -452,5 +455,6 @@
         </div>
       </div>
     </div>
+    <script src="/Users/sebastianjacobs/code/weather/weather-app-project/src/mapScript.js"></script>
   </body>
 </html>
