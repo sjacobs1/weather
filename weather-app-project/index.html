@@ -22,13 +22,27 @@
     class="flex justify-center h-screen bg-bodyBackground font-sans text-center text-textColor"
   >
     <div class="p-4 w-screen h-screenflex flex-col justify-around">
-      <div id="map" class="w-full h-[50vh] mb-4 rounded-lg">test</div>
+      <div class="bg-today mb-4 py-2 gap-2">
+        <div class="flex flex-row justify-around">
+          <div id="johannesburg" class="cursor-pointer">Johannesburg</div>
+          <div id="sydney" class="cursor-pointer">Sydney</div>
+          <div id="tokyo" class="cursor-pointer">Tokyo</div>
+        </div>
+
+        <div class="flex flex-row justify-around">
+          <div id="new-york" class="cursor-pointer">New York</div>
+          <div id="london" class="cursor-pointer">London</div>
+          <div id="amsterdam" class="cursor-pointer">Amsterdam</div>
+        </div>
+      </div>
+
+      <div id="map" class="w-full h-[50vh] mb-4 rounded-lg"></div>
       <div
         class="bg-today rounded-lg flex flex-col lg:flex-row gap-20 py-5 px-5 lg:h-72"
       >
         <div class="lg:pt-10 lg:pl-10">
           <h1 class="pb-5 text-center">Today's conditions</h1>
-          <h1 class="text-4xl pb-2">Johannesburg</h1>
+          <h1 id="chosen-location" class="text-4xl pb-2">Johannesburg</h1>
           <div class="flex justify-center gap-5 items-center">
             <div>
               <svg
@@ -60,7 +74,7 @@
             </div>
             <div class="flex flex-col">
               <div id="current-temperature" class="text-3xl ml-4 flex"></div>
-              <div>mostly sunny</div>
+              <div id="current-general-weather"></div>
             </div>
           </div>
         </div>
@@ -234,7 +248,7 @@
                 ></circle>
               </svg>
             </div>
-            <div>sunny</div>
+            <div id="general-weather-two">sunny</div>
           </div>
         </div>
 
@@ -279,7 +293,7 @@
                 ></circle>
               </svg>
             </div>
-            <div>sunny</div>
+            <div id="general-weather-three">sunny</div>
           </div>
         </div>
 
@@ -324,7 +338,7 @@
                 ></circle>
               </svg>
             </div>
-            <div>sunny</div>
+            <div id="general-weather-four">sunny</div>
           </div>
         </div>
 
@@ -369,7 +383,7 @@
                 ></circle>
               </svg>
             </div>
-            <div>sunny</div>
+            <div id="general-weather-five">sunny</div>
           </div>
         </div>
 
@@ -414,7 +428,7 @@
                 ></circle>
               </svg>
             </div>
-            <div>sunny</div>
+            <div id="general-weather-six">sunny</div>
           </div>
         </div>
 
@@ -459,7 +473,7 @@
                 ></circle>
               </svg>
             </div>
-            <div>sunny</div>
+            <div id="general-weather-seven">sunny</div>
           </div>
         </div>
       </div>
@@ -468,4 +482,3 @@
     <script type="module" src="./main.ts"></script>
   </body>
 </html>
-
