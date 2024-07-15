@@ -1,9 +1,37 @@
-export const fetchWeatherData = () => {
-  const currentWeatherUrl =
-    "https://api.open-meteo.com/v1/forecast?latitude=-26.2023&longitude=28.0436&current=temperature_2m&timezone=auto";
-  const dailyWeatherUrl =
-    "https://api.open-meteo.com/v1/forecast?latitude=-26.2023&longitude=28.0436&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_probability_max,wind_speed_10m_max&timezone=auto";
+const weatherDescriptions = {
+  0: "Clear sky",
+  1: "Mainly clear",
+  2: "Partly cloudy",
+  3: "Overcast",
+  45: "Fog",
+  48: "Depositing rime fog",
+  51: "Light drizzle",
+  53: "Moderate drizzle",
+  55: "Dense drizzle",
+  56: "Light freezing drizzle",
+  57: "Dense freezing drizzle",
+  61: "Light rain",
+  63: "Moderate rain",
+  65: "Heavy rain",
+  66: "Light freezing rain",
+  67: "Heavy freezing rain",
+  71: "Slight snowfall",
+  73: "Moderate snowfall",
+  75: "Heavy snowfall",
+  77: "Snow grains",
+  80: "Slight rain showers",
+  81: "Moderate rain showers",
+  82: "Violent rain showers",
+  85: "Slight snow showers",
+  86: "Heavy snow showers",
+  95: "Thunderstorm slight",
+  96: "Thunderstorm slight with hail",
+  99: "Thunderstorm heavy with hail",
+};
 
+export const fetchWeatherData = (latitude: number, longitude: number) => {
+  const currentWeatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,weather_code,&timezone=auto`;
+  const dailyWeatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_probability_max,wind_speed_10m_max&timezone=auto`;
   Promise.all([fetch(currentWeatherUrl), fetch(dailyWeatherUrl)])
     .then((responses) => {
       return Promise.all(
@@ -25,6 +53,18 @@ export const fetchWeatherData = () => {
         tempElement.textContent = `${currentTemp}°C`;
       } else {
         console.error("Element with ID 'current-temp' not found.");
+      }
+
+      const currentWeatherCode = currentWeather.current.weather_code;
+      const currentWeatherDescription = weatherDescriptions[currentWeatherCode];
+      const weatherDescriptionElement = document.getElementById(
+        "current-general-weather"
+      );
+      if (weatherDescriptionElement) {
+        weatherDescriptionElement.textContent =
+          currentWeatherDescription || "Unknown";
+      } else {
+        console.error("Element with ID 'current-general-weather' not found.");
       }
 
       const maxTempToday = Math.round(dailyWeather.daily.temperature_2m_max[0]);
@@ -112,6 +152,19 @@ export const fetchWeatherData = () => {
         );
       }
 
+      const generalWeatherTwo = dailyWeather.daily.weather_code[1];
+      const generalWeatherDescriptionTwo =
+        weatherDescriptions[generalWeatherTwo];
+      const weatherDescriptionElementTwo = document.getElementById(
+        "general-weather-two"
+      );
+      if (weatherDescriptionElementTwo) {
+        weatherDescriptionElementTwo.textContent =
+          generalWeatherDescriptionTwo || "Unknown";
+      } else {
+        console.error("Element with ID 'general-weather-two' not found.");
+      }
+
       const dateForecastThree = dailyWeather.daily.time[2];
       const dateElementThree = document.getElementById("forecast-three-date");
       if (dateElementThree) {
@@ -146,6 +199,19 @@ export const fetchWeatherData = () => {
         );
       }
 
+      const generalWeatherThree = dailyWeather.daily.weather_code[2];
+      const generalWeatherDescriptionThree =
+        weatherDescriptions[generalWeatherThree];
+      const weatherDescriptionElementThree = document.getElementById(
+        "general-weather-three"
+      );
+      if (weatherDescriptionElementThree) {
+        weatherDescriptionElementThree.textContent =
+          generalWeatherDescriptionThree || "Unknown";
+      } else {
+        console.error("Element with ID 'general-weather-two' not found.");
+      }
+
       const dateForecastFour = dailyWeather.daily.time[3];
       const dateElementFour = document.getElementById("forecast-four-date");
       if (dateElementFour) {
@@ -176,6 +242,19 @@ export const fetchWeatherData = () => {
         console.error(
           "Element with ID 'min-temperature-forecast-two' not found."
         );
+      }
+
+      const generalWeatherFour = dailyWeather.daily.weather_code[3];
+      const generalWeatherDescriptionFour =
+        weatherDescriptions[generalWeatherFour];
+      const weatherDescriptionElementFour = document.getElementById(
+        "general-weather-four"
+      );
+      if (weatherDescriptionElementFour) {
+        weatherDescriptionElementFour.textContent =
+          generalWeatherDescriptionFour || "Unknown";
+      } else {
+        console.error("Element with ID 'general-weather-two' not found.");
       }
 
       const dateForecastFive = dailyWeather.daily.time[4];
@@ -210,6 +289,19 @@ export const fetchWeatherData = () => {
         );
       }
 
+      const generalWeatherFive = dailyWeather.daily.weather_code[4];
+      const generalWeatherDescriptionFive =
+        weatherDescriptions[generalWeatherFive];
+      const weatherDescriptionElementFive = document.getElementById(
+        "general-weather-five"
+      );
+      if (weatherDescriptionElementFive) {
+        weatherDescriptionElementFive.textContent =
+          generalWeatherDescriptionFive || "Unknown";
+      } else {
+        console.error("Element with ID 'general-weather-two' not found.");
+      }
+
       const dateForecastSix = dailyWeather.daily.time[5];
       const dateElementSix = document.getElementById("forecast-six-date");
       if (dateElementSix) {
@@ -240,6 +332,19 @@ export const fetchWeatherData = () => {
         console.error(
           "Element with ID 'min-temperature-forecast-two' not found."
         );
+      }
+
+      const generalWeatherSix = dailyWeather.daily.weather_code[5];
+      const generalWeatherDescriptionSix =
+        weatherDescriptions[generalWeatherSix];
+      const weatherDescriptionElementSix = document.getElementById(
+        "general-weather-six"
+      );
+      if (weatherDescriptionElementSix) {
+        weatherDescriptionElementSix.textContent =
+          generalWeatherDescriptionSix || "Unknown";
+      } else {
+        console.error("Element with ID 'general-weather-two' not found.");
       }
 
       const dateForecastSeven = dailyWeather.daily.time[6];
@@ -274,6 +379,19 @@ export const fetchWeatherData = () => {
         console.error(
           "Element with ID 'min-temperature-forecast-two' not found."
         );
+      }
+
+      const generalWeatherSeven = dailyWeather.daily.weather_code[6];
+      const generalWeatherDescriptionSeven =
+        weatherDescriptions[generalWeatherSeven];
+      const weatherDescriptionElementSeven = document.getElementById(
+        "general-weather-seven"
+      );
+      if (weatherDescriptionElementSeven) {
+        weatherDescriptionElementSeven.textContent =
+          generalWeatherDescriptionSeven || "Unknown";
+      } else {
+        console.error("Element with ID 'general-weather-two' not found.");
       }
     })
     .catch((error) => {
