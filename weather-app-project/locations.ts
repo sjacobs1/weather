@@ -45,13 +45,11 @@ export function initializeCityDivs() {
           break;
       }
 
-      // Update chosen location heading
       const chosenLocationH1 = document.getElementById(
         "chosen-location"
       ) as HTMLHeadingElement;
       chosenLocationH1.textContent = cityDiv?.textContent?.trim() || "";
 
-      // Fetch weather data based on selected city coordinates
       fetchWeatherData(latitude, longitude);
     });
   });
