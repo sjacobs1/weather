@@ -67,6 +67,22 @@ export const fetchWeatherData = (latitude: number, longitude: number) => {
         console.error("Element with ID 'current-general-weather' not found.");
       }
 
+      const timezone = currentWeather.timezone;
+      const cityNameElement = document.getElementById("chosen-location");
+
+      if (cityNameElement) {
+        const parts = timezone.split("/");
+        if (parts.length > 1) {
+          const cityWithUnderscores = parts[1];
+          const city = cityWithUnderscores.replace(/_/g, " ");
+          cityNameElement.textContent = city;
+        } else {
+          console.error("Invalid timezone format");
+        }
+      } else {
+        console.error("Element with ID 'chosen-location' not found.");
+      }
+
       const maxTempToday = Math.round(dailyWeather.daily.temperature_2m_max[0]);
       const maxTempElement = document.getElementById("max-temperature-today");
       if (maxTempElement) {
