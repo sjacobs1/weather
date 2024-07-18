@@ -78,6 +78,10 @@ export const fetchWeatherData = (latitude: number, longitude: number) => {
           const cityWithUnderscores = parts[1];
           const city = cityWithUnderscores.replace(/_/g, " ");
           cityNameElement.textContent = city;
+          sessionStorage.setItem("lastCity", city);
+          sessionStorage.setItem("lastMaxTemp", dailyWeather.daily.temperature_2m_max[0]);
+          sessionStorage.setItem("lastMinTemp", dailyWeather.daily.temperature_2m_min[0]);
+          updateRecentPlaces(city);
         } else {
           console.error("Invalid timezone format");
         }
@@ -518,3 +522,22 @@ export const fetchWeatherData = (latitude: number, longitude: number) => {
       console.error("Error fetching data:", error);
     });
 };
+
+function updateRecentPlaces(city) {
+  const recentPlacesElement = document.getElementById("recent-places");
+  if (!recentPlacesElement) return;
+
+  const maxTemp = sessionStorage.getItem("lastMaxTemp");
+  const minTemp = sessionStorage.getItem("lastMinTemp");
+
+  const divItem = document.createElement("div");
+  divItem.style.minWidth = "120px";
+  // divItem.classList.add("bg-today", "rounded-lg");
+  divItem.innerHTML = `
+    <div>${city}</div>
+    <div>High ${maxTemp}°C</div>
+    <div>Low ${minTemp}°C</div>
+  `;
+  recentPlacesElement.prepend(divItem);
+}
+
