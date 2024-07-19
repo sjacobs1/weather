@@ -3,10 +3,12 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts}"],
   theme: {
     colors: {
-      bodyBackground: "#93c5fd",
+      bodyBackground: "#62a1c7",
       textColor: "#ffffff",
-      today: "#3b82f6",
-      weekDays: "#60a5fa",
+      today: "#15719f",
+      weekDays: "#7bc7dd",
+      locationBar: "#528785",
+      forecastText: "#000000",
     },
     extend: {
       spacing: {
