@@ -1,6 +1,6 @@
 import { fetchWeatherData } from "../open-meteo";
 
-let map = L.map("map").setView([-26.2708, 28.1123], 3);
+let map = L.map("map").setView([-26.2708, 28.1123], 1);
 
 L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
   attribution:
@@ -10,8 +10,14 @@ L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
 map.on("click", function (e) {
   const latitude = e.latlng.lat;
   const longitude = e.latlng.lng;
-  console.log(latitude, longitude);
-  var c = L.circle([latitude, longitude], { radius: 100 }).addTo(map);
+
+  map.eachLayer(function (layer) {
+    if (layer instanceof L.Circle) {
+      map.removeLayer(layer);
+    }
+  });
+
+  L.circle([latitude, longitude], { radius: 100000, color: "red" }).addTo(map);
 
   fetchWeatherData(latitude, longitude);
 });

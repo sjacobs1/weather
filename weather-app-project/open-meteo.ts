@@ -29,7 +29,6 @@ const weatherDescriptions = {
   99: "Thunderstorm heavy with hail",
 };
 
-
 export const fetchWeatherData = (latitude: number, longitude: number) => {
   const currentWeatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,weather_code,&timezone=auto`;
   const dailyWeatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_probability_max,wind_speed_10m_max&timezone=auto`;
@@ -79,8 +78,14 @@ export const fetchWeatherData = (latitude: number, longitude: number) => {
           const city = cityWithUnderscores.replace(/_/g, " ");
           cityNameElement.textContent = city;
           sessionStorage.setItem("lastCity", city);
-          sessionStorage.setItem("lastMaxTemp", dailyWeather.daily.temperature_2m_max[0]);
-          sessionStorage.setItem("lastMinTemp", dailyWeather.daily.temperature_2m_min[0]);
+          sessionStorage.setItem(
+            "lastMaxTemp",
+            dailyWeather.daily.temperature_2m_max[0]
+          );
+          sessionStorage.setItem(
+            "lastMinTemp",
+            dailyWeather.daily.temperature_2m_min[0]
+          );
           updateRecentPlaces(city);
         } else {
           console.error("Invalid timezone format");
@@ -92,7 +97,7 @@ export const fetchWeatherData = (latitude: number, longitude: number) => {
       function setWeatherIcon(weatherCode, targetElementId) {
         const weatherIconElement = document.getElementById(targetElementId);
         if (!weatherIconElement) return;
-    
+
         let weatherIcon;
         switch (weatherCode) {
           case 0:
@@ -135,48 +140,48 @@ export const fetchWeatherData = (latitude: number, longitude: number) => {
 	c0.65,0,1.21,0.23,1.68,0.7c0.47,0.47,0.7,1.02,0.7,1.66c0,0.6-0.21,1.12-0.62,1.57s-0.92,0.7-1.53,0.77c-0.1,0-0.15,0.05-0.15,0.16
 	v1.13c0,0.11,0.05,0.16,0.15,0.16c1.01-0.06,1.86-0.46,2.55-1.19s1.04-1.6,1.04-2.6c0-1.06-0.37-1.96-1.12-2.7
 	c-0.75-0.75-1.65-1.12-2.7-1.12h-0.15c-0.26-1-0.81-1.82-1.65-2.47c-0.83-0.65-1.77-0.97-2.8-0.97C16.28,7.29,15.11,7.82,14.19,8.88
-	z"></path></svg>`
+	z"></path></svg>`;
             break;
           case 45:
           case 48:
-            weatherIcon = `<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="3rem" width="3rem" xmlns="http://www.w3.org/2000/svg"><path d="M8.5 4a4 4 0 0 0-3.8 2.745.5.5 0 1 1-.949-.313 5.002 5.002 0 0 1 9.654.595A3 3 0 0 1 13 13H.5a.5.5 0 0 1 0-1H13a2 2 0 0 0 .001-4h-.026a.5.5 0 0 1-.5-.445A4 4 0 0 0 8.5 4M0 8.5A.5.5 0 0 1 .5 8h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5"></path></svg>`
+            weatherIcon = `<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="3rem" width="3rem" xmlns="http://www.w3.org/2000/svg"><path d="M8.5 4a4 4 0 0 0-3.8 2.745.5.5 0 1 1-.949-.313 5.002 5.002 0 0 1 9.654.595A3 3 0 0 1 13 13H.5a.5.5 0 0 1 0-1H13a2 2 0 0 0 .001-4h-.026a.5.5 0 0 1-.5-.445A4 4 0 0 0 8.5 4M0 8.5A.5.5 0 0 1 .5 8h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5"></path></svg>`;
             break;
           case 51:
-          case 53: 
+          case 53:
           case 55:
           case 56:
-          case 57:  
-            weatherIcon = `<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="3rem" width="3rem" xmlns="http://www.w3.org/2000/svg"><g id="Cloud_Drizzle"><g><path d="M17.605,16.787v1.018a.5.5,0,0,0,1,0V16.787a.516.516,0,0,0-.146-.354.5.5,0,0,0-.854.354Z"></path><path d="M11.5,16.787v1.018a.516.516,0,0,0,.146.353.5.5,0,0,0,.854-.353V16.787a.521.521,0,0,0-.146-.354.5.5,0,0,0-.854.354Z"></path><path d="M14.552,20.343v1.018a.5.5,0,0,0,1,0V20.343a.516.516,0,0,0-.146-.354.5.5,0,0,0-.854.354Z"></path><path d="M8.446,20.343v1.018a.5.5,0,0,0,1,0V20.343a.521.521,0,0,0-.146-.354.5.5,0,0,0-.854.354Z"></path><path d="M5.393,16.787v1.018a.5.5,0,0,0,1,0V16.787a.521.521,0,0,0-.146-.354.5.5,0,0,0-.854.354Z"></path><path d="M16.1,14.228h-5.99A6.116,6.116,0,0,1,3.916,8.474h0A6.044,6.044,0,0,1,9.953,2.139a6.07,6.07,0,0,1,5.8,4.366,3.919,3.919,0,0,1,3.288,1.2,3.85,3.85,0,0,1,1.038,2.908A3.946,3.946,0,0,1,16.1,14.228ZM4.915,8.427a5.117,5.117,0,0,0,5.194,4.8H16.1a2.944,2.944,0,0,0,2.986-2.682,2.873,2.873,0,0,0-3.494-3l-.2.046-.25-.124a.592.592,0,0,1-.262-.377A5.061,5.061,0,0,0,9.953,3.139,5.043,5.043,0,0,0,4.915,8.427Z"></path></g></g></svg>`
+          case 57:
+            weatherIcon = `<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="3rem" width="3rem" xmlns="http://www.w3.org/2000/svg"><g id="Cloud_Drizzle"><g><path d="M17.605,16.787v1.018a.5.5,0,0,0,1,0V16.787a.516.516,0,0,0-.146-.354.5.5,0,0,0-.854.354Z"></path><path d="M11.5,16.787v1.018a.516.516,0,0,0,.146.353.5.5,0,0,0,.854-.353V16.787a.521.521,0,0,0-.146-.354.5.5,0,0,0-.854.354Z"></path><path d="M14.552,20.343v1.018a.5.5,0,0,0,1,0V20.343a.516.516,0,0,0-.146-.354.5.5,0,0,0-.854.354Z"></path><path d="M8.446,20.343v1.018a.5.5,0,0,0,1,0V20.343a.521.521,0,0,0-.146-.354.5.5,0,0,0-.854.354Z"></path><path d="M5.393,16.787v1.018a.5.5,0,0,0,1,0V16.787a.521.521,0,0,0-.146-.354.5.5,0,0,0-.854.354Z"></path><path d="M16.1,14.228h-5.99A6.116,6.116,0,0,1,3.916,8.474h0A6.044,6.044,0,0,1,9.953,2.139a6.07,6.07,0,0,1,5.8,4.366,3.919,3.919,0,0,1,3.288,1.2,3.85,3.85,0,0,1,1.038,2.908A3.946,3.946,0,0,1,16.1,14.228ZM4.915,8.427a5.117,5.117,0,0,0,5.194,4.8H16.1a2.944,2.944,0,0,0,2.986-2.682,2.873,2.873,0,0,0-3.494-3l-.2.046-.25-.124a.592.592,0,0,1-.262-.377A5.061,5.061,0,0,0,9.953,3.139,5.043,5.043,0,0,0,4.915,8.427Z"></path></g></g></svg>`;
             break;
           case 61:
-          case 63: 
+          case 63:
           case 65:
           case 66:
           case 67:
-              weatherIcon = `<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="3rem" width="3rem" xmlns="http://www.w3.org/2000/svg"><path fill="none" stroke-linejoin="round" stroke-width="32" d="M114.61 162.85A16.07 16.07 0 0 0 128 149.6C140.09 76.17 193.63 32 256 32c57.93 0 96.62 37.75 112.2 77.74a15.84 15.84 0 0 0 12.2 9.87c50 8.15 91.6 41.54 91.6 99.59 0 59.4-48.6 100.8-108 100.8H130c-49.5 0-90-24.7-90-79.2 0-48.47 38.67-72.22 74.61-77.95z"></path><path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="m144 384-32 48m112-48-64 96m144-96-32 48m112-48-64 96"></path></svg>`
+            weatherIcon = `<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="3rem" width="3rem" xmlns="http://www.w3.org/2000/svg"><path fill="none" stroke-linejoin="round" stroke-width="32" d="M114.61 162.85A16.07 16.07 0 0 0 128 149.6C140.09 76.17 193.63 32 256 32c57.93 0 96.62 37.75 112.2 77.74a15.84 15.84 0 0 0 12.2 9.87c50 8.15 91.6 41.54 91.6 99.59 0 59.4-48.6 100.8-108 100.8H130c-49.5 0-90-24.7-90-79.2 0-48.47 38.67-72.22 74.61-77.95z"></path><path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="m144 384-32 48m112-48-64 96m144-96-32 48m112-48-64 96"></path></svg>`;
             break;
           case 71:
-          case 73: 
+          case 73:
           case 75:
           case 77:
-              weatherIcon = `<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" height="3rem" width="3rem" xmlns="http://www.w3.org/2000/svg"><path d="M440.1 355.2l-39.2-23 34.1-9.3c8.4-2.3 13.4-11.1 11.1-19.6l-4.1-15.5c-2.2-8.5-10.9-13.6-19.3-11.3L343 298.2 271.2 256l71.9-42.2 79.7 21.7c8.4 2.3 17-2.8 19.3-11.3l4.1-15.5c2.2-8.5-2.7-17.3-11.1-19.6l-34.1-9.3 39.2-23c7.5-4.4 10.1-14.2 5.8-21.9l-7.9-13.9c-4.3-7.7-14-10.3-21.5-5.9l-39.2 23 9.1-34.7c2.2-8.5-2.7-17.3-11.1-19.6l-15.2-4.1c-8.4-2.3-17 2.8-19.3 11.3l-21.3 81-71.9 42.2v-84.5L306 70.4c6.1-6.2 6.1-16.4 0-22.6l-11.1-11.3c-6.1-6.2-16.1-6.2-22.2 0l-24.9 25.4V16c0-8.8-7-16-15.7-16h-15.7c-8.7 0-15.7 7.2-15.7 16v46.1l-24.9-25.4c-6.1-6.2-16.1-6.2-22.2 0L142.1 48c-6.1 6.2-6.1 16.4 0 22.6l58.3 59.3v84.5l-71.9-42.2-21.3-81c-2.2-8.5-10.9-13.6-19.3-11.3L72.7 84c-8.4 2.3-13.4 11.1-11.1 19.6l9.1 34.7-39.2-23c-7.5-4.4-17.1-1.8-21.5 5.9l-7.9 13.9c-4.3 7.7-1.8 17.4 5.8 21.9l39.2 23-34.1 9.1c-8.4 2.3-13.4 11.1-11.1 19.6L6 224.2c2.2 8.5 10.9 13.6 19.3 11.3l79.7-21.7 71.9 42.2-71.9 42.2-79.7-21.7c-8.4-2.3-17 2.8-19.3 11.3l-4.1 15.5c-2.2 8.5 2.7 17.3 11.1 19.6l34.1 9.3-39.2 23c-7.5 4.4-10.1 14.2-5.8 21.9L10 391c4.3 7.7 14 10.3 21.5 5.9l39.2-23-9.1 34.7c-2.2 8.5 2.7 17.3 11.1 19.6l15.2 4.1c8.4 2.3 17-2.8 19.3-11.3l21.3-81 71.9-42.2v84.5l-58.3 59.3c-6.1 6.2-6.1 16.4 0 22.6l11.1 11.3c6.1 6.2 16.1 6.2 22.2 0l24.9-25.4V496c0 8.8 7 16 15.7 16h15.7c8.7 0 15.7-7.2 15.7-16v-46.1l24.9 25.4c6.1 6.2 16.1 6.2 22.2 0l11.1-11.3c6.1-6.2 6.1-16.4 0-22.6l-58.3-59.3v-84.5l71.9 42.2 21.3 81c2.2 8.5 10.9 13.6 19.3 11.3L375 428c8.4-2.3 13.4-11.1 11.1-19.6l-9.1-34.7 39.2 23c7.5 4.4 17.1 1.8 21.5-5.9l7.9-13.9c4.6-7.5 2.1-17.3-5.5-21.7z"></path></svg>`
-              break;
+            weatherIcon = `<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" height="3rem" width="3rem" xmlns="http://www.w3.org/2000/svg"><path d="M440.1 355.2l-39.2-23 34.1-9.3c8.4-2.3 13.4-11.1 11.1-19.6l-4.1-15.5c-2.2-8.5-10.9-13.6-19.3-11.3L343 298.2 271.2 256l71.9-42.2 79.7 21.7c8.4 2.3 17-2.8 19.3-11.3l4.1-15.5c2.2-8.5-2.7-17.3-11.1-19.6l-34.1-9.3 39.2-23c7.5-4.4 10.1-14.2 5.8-21.9l-7.9-13.9c-4.3-7.7-14-10.3-21.5-5.9l-39.2 23 9.1-34.7c2.2-8.5-2.7-17.3-11.1-19.6l-15.2-4.1c-8.4-2.3-17 2.8-19.3 11.3l-21.3 81-71.9 42.2v-84.5L306 70.4c6.1-6.2 6.1-16.4 0-22.6l-11.1-11.3c-6.1-6.2-16.1-6.2-22.2 0l-24.9 25.4V16c0-8.8-7-16-15.7-16h-15.7c-8.7 0-15.7 7.2-15.7 16v46.1l-24.9-25.4c-6.1-6.2-16.1-6.2-22.2 0L142.1 48c-6.1 6.2-6.1 16.4 0 22.6l58.3 59.3v84.5l-71.9-42.2-21.3-81c-2.2-8.5-10.9-13.6-19.3-11.3L72.7 84c-8.4 2.3-13.4 11.1-11.1 19.6l9.1 34.7-39.2-23c-7.5-4.4-17.1-1.8-21.5 5.9l-7.9 13.9c-4.3 7.7-1.8 17.4 5.8 21.9l39.2 23-34.1 9.1c-8.4 2.3-13.4 11.1-11.1 19.6L6 224.2c2.2 8.5 10.9 13.6 19.3 11.3l79.7-21.7 71.9 42.2-71.9 42.2-79.7-21.7c-8.4-2.3-17 2.8-19.3 11.3l-4.1 15.5c-2.2 8.5 2.7 17.3 11.1 19.6l34.1 9.3-39.2 23c-7.5 4.4-10.1 14.2-5.8 21.9L10 391c4.3 7.7 14 10.3 21.5 5.9l39.2-23-9.1 34.7c-2.2 8.5 2.7 17.3 11.1 19.6l15.2 4.1c8.4 2.3 17-2.8 19.3-11.3l21.3-81 71.9-42.2v84.5l-58.3 59.3c-6.1 6.2-6.1 16.4 0 22.6l11.1 11.3c6.1 6.2 16.1 6.2 22.2 0l24.9-25.4V496c0 8.8 7 16 15.7 16h15.7c8.7 0 15.7-7.2 15.7-16v-46.1l24.9 25.4c6.1 6.2 16.1 6.2 22.2 0l11.1-11.3c6.1-6.2 6.1-16.4 0-22.6l-58.3-59.3v-84.5l71.9 42.2 21.3 81c2.2 8.5 10.9 13.6 19.3 11.3L375 428c8.4-2.3 13.4-11.1 11.1-19.6l-9.1-34.7 39.2 23c7.5 4.4 17.1 1.8 21.5-5.9l7.9-13.9c4.6-7.5 2.1-17.3-5.5-21.7z"></path></svg>`;
+            break;
           case 80:
           case 81:
           case 82:
           case 85:
-            weatherIcon = `<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 32 32" height="3rem" width="3rem" xmlns="http://www.w3.org/2000/svg"><path d="M 16 5 C 12.667969 5 9.949219 7.371094 9.25 10.5 C 8.03125 10.980469 7.125 11.871094 6.59375 13.0625 C 6.394531 13.039063 6.210938 13 6 13 C 2.699219 13 0 15.699219 0 19 C 0 19.066406 -0.00390625 19.121094 0 19.1875 C 0.09375 22.046875 2.140625 24.355469 4.84375 24.875 L 6.75 23 L 6 23 C 3.828125 23 2.070313 21.292969 2 19.125 C 2 19.082031 2 19.042969 2 19 C 2 16.78125 3.78125 15 6 15 C 6.292969 15 6.578125 15.027344 6.875 15.09375 L 7.875 15.3125 L 8.0625 14.34375 C 8.308594 13.230469 9.203125 12.359375 10.3125 12.09375 L 10.96875 11.9375 L 11.0625 11.25 C 11.417969 8.835938 13.476563 7 16 7 C 17.957031 7 19.644531 8.121094 20.46875 9.75 L 20.84375 10.53125 L 21.6875 10.25 C 22.125 10.097656 22.554688 10 23 10 C 25.21875 10 27 11.78125 27 14 C 27 13.992188 26.984375 14.078125 26.96875 14.3125 L 26.90625 15.03125 L 27.5625 15.3125 C 28.992188 15.921875 30 17.339844 30 19 C 30 21.21875 28.21875 23 26 23 L 25.3125 23 L 23.28125 25 L 26 25 C 29.300781 25 32 22.300781 32 19 C 32 16.835938 30.730469 15.054688 29 14 C 29 10.699219 26.300781 8 23 8 C 22.566406 8 22.203125 8.128906 21.8125 8.21875 C 20.5625 6.300781 18.453125 5 16 5 Z M 13.59375 19.09375 L 3.9375 28.59375 L 5.34375 30 L 15 20.5 Z M 18.59375 19.09375 L 8.9375 28.59375 L 10.34375 30 L 20 20.5 Z M 23.59375 19.09375 L 13.9375 28.59375 L 15.34375 30 L 25 20.5 Z"></path></svg>`
+            weatherIcon = `<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 32 32" height="3rem" width="3rem" xmlns="http://www.w3.org/2000/svg"><path d="M 16 5 C 12.667969 5 9.949219 7.371094 9.25 10.5 C 8.03125 10.980469 7.125 11.871094 6.59375 13.0625 C 6.394531 13.039063 6.210938 13 6 13 C 2.699219 13 0 15.699219 0 19 C 0 19.066406 -0.00390625 19.121094 0 19.1875 C 0.09375 22.046875 2.140625 24.355469 4.84375 24.875 L 6.75 23 L 6 23 C 3.828125 23 2.070313 21.292969 2 19.125 C 2 19.082031 2 19.042969 2 19 C 2 16.78125 3.78125 15 6 15 C 6.292969 15 6.578125 15.027344 6.875 15.09375 L 7.875 15.3125 L 8.0625 14.34375 C 8.308594 13.230469 9.203125 12.359375 10.3125 12.09375 L 10.96875 11.9375 L 11.0625 11.25 C 11.417969 8.835938 13.476563 7 16 7 C 17.957031 7 19.644531 8.121094 20.46875 9.75 L 20.84375 10.53125 L 21.6875 10.25 C 22.125 10.097656 22.554688 10 23 10 C 25.21875 10 27 11.78125 27 14 C 27 13.992188 26.984375 14.078125 26.96875 14.3125 L 26.90625 15.03125 L 27.5625 15.3125 C 28.992188 15.921875 30 17.339844 30 19 C 30 21.21875 28.21875 23 26 23 L 25.3125 23 L 23.28125 25 L 26 25 C 29.300781 25 32 22.300781 32 19 C 32 16.835938 30.730469 15.054688 29 14 C 29 10.699219 26.300781 8 23 8 C 22.566406 8 22.203125 8.128906 21.8125 8.21875 C 20.5625 6.300781 18.453125 5 16 5 Z M 13.59375 19.09375 L 3.9375 28.59375 L 5.34375 30 L 15 20.5 Z M 18.59375 19.09375 L 8.9375 28.59375 L 10.34375 30 L 20 20.5 Z M 23.59375 19.09375 L 13.9375 28.59375 L 15.34375 30 L 25 20.5 Z"></path></svg>`;
             break;
           case 86:
-            weatherIcon = `<svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="3rem" width="3rem" xmlns="http://www.w3.org/2000/svg"><path d="M20 17.58A5 5 0 0 0 18 8h-1.26A8 8 0 1 0 4 16.25"></path><line x1="8" y1="16" x2="8.01" y2="16"></line><line x1="8" y1="20" x2="8.01" y2="20"></line><line x1="12" y1="18" x2="12.01" y2="18"></line><line x1="12" y1="22" x2="12.01" y2="22"></line><line x1="16" y1="16" x2="16.01" y2="16"></line><line x1="16" y1="20" x2="16.01" y2="20"></line></svg>`
+            weatherIcon = `<svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="3rem" width="3rem" xmlns="http://www.w3.org/2000/svg"><path d="M20 17.58A5 5 0 0 0 18 8h-1.26A8 8 0 1 0 4 16.25"></path><line x1="8" y1="16" x2="8.01" y2="16"></line><line x1="8" y1="20" x2="8.01" y2="20"></line><line x1="12" y1="18" x2="12.01" y2="18"></line><line x1="12" y1="22" x2="12.01" y2="22"></line><line x1="16" y1="16" x2="16.01" y2="16"></line><line x1="16" y1="20" x2="16.01" y2="20"></line></svg>`;
             break;
-            case 95:
-            case 96:
-            case 99:
-              weatherIcon = `<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="3rem" width="3rem" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M96 416a16 16 0 0 1-14.3-23.16l24-48a16 16 0 0 1 28.62 14.32l-24 48A16 16 0 0 1 96 416zm24 64a16 16 0 0 1-14.3-23.16l16-32a16 16 0 0 1 28.62 14.32l-16 32A16 16 0 0 1 120 480zm256-64a16 16 0 0 1-14.3-23.16l24-48a16 16 0 0 1 28.62 14.32l-24 48A16 16 0 0 1 376 416zm24 64a16 16 0 0 1-14.3-23.16l16-32a16 16 0 0 1 28.62 14.32l-16 32A16 16 0 0 1 400 480z"></path><path d="M405.84 136.9a151.25 151.25 0 0 0-47.6-81.9 153 153 0 0 0-241.81 51.86C60.5 110.16 16 156.65 16 213.33 16 272.15 63.91 320 122.8 320h66.31l-12.89 77.37A16 16 0 0 0 192 416h32v64a16 16 0 0 0 29 9.3l80-112a16 16 0 0 0-13-25.3h-27.51l8-32h103.84a91.56 91.56 0 0 0 1.51-183.1z"></path></svg>`
-              break;
+          case 95:
+          case 96:
+          case 99:
+            weatherIcon = `<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="3rem" width="3rem" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M96 416a16 16 0 0 1-14.3-23.16l24-48a16 16 0 0 1 28.62 14.32l-24 48A16 16 0 0 1 96 416zm24 64a16 16 0 0 1-14.3-23.16l16-32a16 16 0 0 1 28.62 14.32l-16 32A16 16 0 0 1 120 480zm256-64a16 16 0 0 1-14.3-23.16l24-48a16 16 0 0 1 28.62 14.32l-24 48A16 16 0 0 1 376 416zm24 64a16 16 0 0 1-14.3-23.16l16-32a16 16 0 0 1 28.62 14.32l-16 32A16 16 0 0 1 400 480z"></path><path d="M405.84 136.9a151.25 151.25 0 0 0-47.6-81.9 153 153 0 0 0-241.81 51.86C60.5 110.16 16 156.65 16 213.33 16 272.15 63.91 320 122.8 320h66.31l-12.89 77.37A16 16 0 0 0 192 416h32v64a16 16 0 0 0 29 9.3l80-112a16 16 0 0 0-13-25.3h-27.51l8-32h103.84a91.56 91.56 0 0 0 1.51-183.1z"></path></svg>`;
+            break;
           default:
-            weatherIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="3rem" height="3rem"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"></circle></svg>`; // Default icon if weather code not found
+            weatherIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="3rem" height="3rem"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"></circle></svg>`;
         }
         weatherIconElement.innerHTML = weatherIcon;
       }
@@ -188,8 +193,6 @@ export const fetchWeatherData = (latitude: number, longitude: number) => {
       setWeatherIcon(dailyWeatherCode[4], "forecast-five-icon");
       setWeatherIcon(dailyWeatherCode[5], "forecast-six-icon");
       setWeatherIcon(dailyWeatherCode[6], "forecast-seven-icon");
-
-
 
       const maxTempToday = Math.round(dailyWeather.daily.temperature_2m_max[0]);
       const maxTempElement = document.getElementById("max-temperature-today");
@@ -529,10 +532,9 @@ function updateRecentPlaces(city) {
 
   const maxTemp = sessionStorage.getItem("lastMaxTemp");
   const minTemp = sessionStorage.getItem("lastMinTemp");
-
   const divItem = document.createElement("div");
   divItem.style.minWidth = "120px";
-  // divItem.classList.add("bg-today", "rounded-lg");
+  divItem.classList.add("bg-today", "rounded-lg");
   divItem.innerHTML = `
     <div>${city}</div>
     <div>High ${maxTemp}°C</div>
@@ -540,4 +542,3 @@ function updateRecentPlaces(city) {
   `;
   recentPlacesElement.prepend(divItem);
 }
-
